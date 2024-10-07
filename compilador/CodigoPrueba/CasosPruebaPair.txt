@@ -1,0 +1,4 @@
+programa
+BEGIN
+    TYPEDEF PAIR < INTEGER > pint ;
+END 

@@ -1,0 +1,6 @@
+programa
+BEGIN
+ INTEGER FUN F1 (INTEGER i) BEGIN
+    OUTF( ) ;
+ END
+END

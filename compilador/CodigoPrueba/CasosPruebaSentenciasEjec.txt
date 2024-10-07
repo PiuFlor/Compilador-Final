@@ -1,0 +1,26 @@
+programa
+BEGIN
+    INTEGER a;
+    INTEGER b;
+    
+    ##asig
+    a := 10; 
+    b := 20;
+    
+    ## Sentencia IF-THEN-ELSE
+    IF ( a > b ) THEN 
+    BEGIN 
+      a := a + b; 
+    END  
+    ELSE 
+    BEGIN
+      b := a + b;
+      a := b;
+    END
+    END_IF;
+
+    WHILE ( a != b ) 
+    BEGIN
+      a := a + 1 ;
+    END ;
+END  

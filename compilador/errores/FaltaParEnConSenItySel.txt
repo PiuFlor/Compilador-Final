@@ -1,0 +1,11 @@
+programa
+BEGIN
+    IF x > 10 THEN BEGIN
+       x := x + 1;
+      END
+    END_IF ;
+
+    WHILE x < 5 BEGIN  
+        x := x - 1;
+    END ;
+END  

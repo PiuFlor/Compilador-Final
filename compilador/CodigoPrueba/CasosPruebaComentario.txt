@@ -1,0 +1,5 @@
+programa
+BEGIN
+   ## comentario bien escrito
+   INTEGER a;
+END 

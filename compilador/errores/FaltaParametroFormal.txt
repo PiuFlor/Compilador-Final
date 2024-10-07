@@ -1,0 +1,6 @@
+programa
+BEGIN
+INTEGER FUN f1 () BEGIN
+    RET(5);
+END;
+END 

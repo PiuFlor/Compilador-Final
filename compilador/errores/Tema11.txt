@@ -1,0 +1,7 @@
+prog
+BEGIN
+   TYPEDEF := INTEGER {1, 10} ; 
+   TYPEDEF miTipo := {1, 10}; 
+   TYPEDEF miTipo := INTEGER ; 
+   TYPEDEF miTipo := INTEGER 1, 10 ;
+END 
