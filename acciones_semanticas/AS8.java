@@ -17,10 +17,8 @@ simbolos y devuelve el token. */
         String lexema = token.toString();
         int leido = Integer.parseInt(lexema);
         if (leido > MAX_INT){
-            Parser.agregarError(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, " El entero ingresado se encuentra fuera de rango, sera cambiado por el entero mas cercano permitido ");
+            Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, " El entero ingresado se encuentra fuera de rango, sera cambiado por el entero mas cercano permitido ");
             leido = MAX_INT;
-            String mensajeWarning = "Error: Linea " + AnalizadorLexico.getLineaActual() + ": Supera el rango";
-            System.err.println(mensajeWarning);
 
             FileWriter writer = new FileWriter(FILE_PATH, true); 
             writer.write("Entero: " + leido + " - LINEA: " + AnalizadorLexico.getLineaActual() +"\n");
@@ -32,7 +30,6 @@ simbolos y devuelve el token. */
             TablaDeSimbolos.agregarSimbolo(String.valueOf(leido), ConstantesCompilador.CONSTANTE);
             TablaDeSimbolos.obtenerSimbolo(String.valueOf(leido)).setTipo("i16");
             TablaDeSimbolos.obtenerSimbolo(String.valueOf(leido)).setUso("constante");
-            System.out.println("Linea: " + AnalizadorLexico.getLineaActual() + ", se reconocio Constante entera: " + lexema + " codigo: " + ConstantesCompilador.CONSTANTE);
             
             FileWriter writer = new FileWriter(FILE_PATH, true); 
             writer.write("Entero: " + lexema + " - LINEA: " + AnalizadorLexico.getLineaActual() +"\n");

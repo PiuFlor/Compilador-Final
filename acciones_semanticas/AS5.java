@@ -26,7 +26,7 @@ public class AS5 implements AccionSemantica {
 
                     return id_token;
                 } else {
-                    Parser.agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "TOKEN NO VALIDO: "+ token_actual.toString());
+                    Parser.agregarErrorLex(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "TOKEN NO VALIDO: "+ token_actual.toString());
                     return ConstantesCompilador.ERROR; 
                  }
     }

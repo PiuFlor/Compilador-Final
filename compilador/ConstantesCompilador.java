@@ -32,6 +32,7 @@ public class ConstantesCompilador {
     
     public static final int WARNING = -2;
     public static final String LEXICO = "Se ha encontrado un error lexico ";
+    public static final String WLEXICO = "Se ha encontrado un Warning ";
     public static final String SINTACTICO = "Se ha encontrado un error sintactico ";
     public static final String SEMANTICO = "Se ha entonctrado un error semantico";
     public static final int MAX_INT_POSITIVO = 32767;

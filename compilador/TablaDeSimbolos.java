@@ -87,7 +87,7 @@ public class TablaDeSimbolos {
 
     //elimina simbolo
     public static void eliminarSimbolo(String lexema) {
-        //simbolos.remove(lexema);
+        simbolos.remove(lexema);
     }
 
     //imprime los simbolos

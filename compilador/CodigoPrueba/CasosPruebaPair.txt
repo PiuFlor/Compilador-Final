@@ -1,4 +1,7 @@
 programa
 BEGIN
     TYPEDEF PAIR < INTEGER > pint ;
+    
+    p1{1} := 34 ;
+    
 END 

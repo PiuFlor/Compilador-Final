@@ -2,7 +2,9 @@ package compilador;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -91,6 +93,7 @@ public class Main {
             parser.run();
 
             System.out.println("\nSe ha terminado de compilar\n");
+            imprimirTokensGenerados();
             TablaDeSimbolos.imprimirTabla();
             Parser.imprimirErrores();
         } else {
@@ -111,6 +114,18 @@ public class Main {
             } else {
                 file.createNewFile();
                 System.out.println("Archivo creado.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void imprimirTokensGenerados() {
+    	System.out.println("TOKENS: ");
+    	try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
             }
         } catch (IOException e) {
             e.printStackTrace();

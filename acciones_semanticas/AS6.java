@@ -29,7 +29,7 @@ public class AS6 implements AccionSemantica {
 
 		        return id_token;
 		    } else {
-		        Parser.agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "TOKEN NO VALIDO: "+ token_actual.toString());
+		        Parser.agregarErrorLex(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "TOKEN NO VALIDO: "+ token_actual.toString());
 		        return ConstantesCompilador.ERROR; 
 		    }
 		} else { //Devuelve el ultimo caracter leido
@@ -38,7 +38,7 @@ public class AS6 implements AccionSemantica {
 		    char char1 = str.charAt(0);
 		    //System.out.println (char1);
 		    int id = (int) char1;
-			id = TablaDeSimbolos.agregarSimbolo(token_actual.toString(),id);
+			
 		    token_actual.deleteCharAt(token_actual.length()-1);
 			
 			FileWriter writer = new FileWriter(FILE_PATH, true); 

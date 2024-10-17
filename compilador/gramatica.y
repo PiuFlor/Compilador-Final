@@ -28,8 +28,8 @@ program: programa
 
 programa: nombre_programa BEGIN bloque_sentencias_programa END {System.out.println("Linea "+ AnalizadorLexico.getLineaActual() + ", Se reconocio el programa " +  $1.sval);}
      | nombre_programa BEGIN END error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Se esperaban sentencias de ejecucion");}
-        | nombre_programa BEGIN bloque_sentencias_programa error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de delimitador de programa");}
-        | nombre_programa bloque_sentencias_programa END error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de delimitador de programa");}
+        | nombre_programa BEGIN bloque_sentencias_programa error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de delimitador de programa: END");}
+        | nombre_programa bloque_sentencias_programa END error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de delimitador de programa: BEGIN");}
         | BEGIN bloque_sentencias_programa END error {agregarError(ConstantesCompilador.ERROR,ConstantesCompilador.SINTACTICO, "Se esperaba un nombre de programa");}
         | nombre_programa error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Error sintactico al compilar no permite terminar de leer el programa de forma correcta");}                                                              
      ;
@@ -65,8 +65,9 @@ declaracion_funcion: tipo FUN ID '(' parametro ')' BEGIN cuerpo_funcion END {Sys
              | tipo FUN error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de nombre en la función");}
              | tipo FUN ID '('  ')' error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parametro");}
              | tipo FUN ID  BEGIN cuerpo_funcion END error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parametro");}
-             | error FUN ID '(' parametro ')' BEGIN cuerpo_funcion END {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta tipo");}
+             |  FUN ID '(' parametro ')' BEGIN cuerpo_funcion END {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta tipo");}
              | tipo FUN ID '(' parametro ',' parametro ')' error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "error en la cantidad de parametros");}//creo esta mal
+             | tipo  ID '(' parametro ')' BEGIN cuerpo_funcion END {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta palabra reservada FUN");}
      ;
 
 parametro: tipo ID {System.out.println("Linea: "+ AnalizadorLexico.getLineaActual() + ", Se reconocio parametro");} 
@@ -87,6 +88,7 @@ sentencia_retorno: RET '(' expr_aritmetic ')' ';' {System.out.println("Linea: "+
    | RET expr_aritmetic error{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis");} 
    | RET '(' expr_aritmetic error{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para cerrar");} 
    | RET expr_aritmetic ')' error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para abrir");} 
+   | RET '(' error ')' ';' {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Retorno vacio");}
     ;
 
 invocacion_funcion: ID '(' expr_aritmetic ')'  { System.out.println("Linea: "+ AnalizadorLexico.getLineaActual() + ", Se reconocio el llamado a la funcion " + $1.sval );}
@@ -117,7 +119,7 @@ sentencias_ejecutables: sentencia_asignacion ';'
  //Asignacion T18
 sentencia_asignacion: list_var ASIG list_expresion {System.out.println("Linea: "+ AnalizadorLexico.getLineaActual() + ", Se reconocio la asignacion ");}
     | list_var ASIG error{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Error en la expresion de la asignacion");}
-    | var_pair ASIG expr_aritmetic
+    | var_pair ASIG list_expresion {System.out.println("Linea: "+ AnalizadorLexico.getLineaActual() + ", Se reconocio la asignacion ");}
      ;
 
 list_expresion: expr_aritmetic
@@ -136,7 +138,8 @@ sentencia_seleccion:  IF '(' condicion ')' THEN bloque_sentencias_del ELSE bloqu
     | IF '(' condicion ')' THEN bloque_sentencias_del ELSE error END_IF { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de contenido en bloque ELSE"); }
     ;
 
-bloque_sentencias_del: BEGIN bloque_ejecutable END 
+bloque_sentencias_del: sentencias_ejecutables
+    | BEGIN bloque_ejecutable END 
     | BEGIN error END { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de contenido en bloque"); }
     | error bloque_ejecutable END { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta el BEGIN"); }
     | BEGIN bloque_ejecutable error { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta el END"); }
@@ -177,7 +180,7 @@ declaracion_tipo_subrango: TYPEDEF ID ASIG tipo rango {System.out.println("Linea
      | TYPEDEF ID ASIG error { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta tipo base"); } 
     ;
 
-rango: '{' CTE ',' CTE '}' 
+rango: '{' const ',' const '}' 
        | error { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de {} en el rango");}
     ;
 
@@ -209,6 +212,7 @@ etiqueta: ETIQUETA {System.out.println("Linea: "+ AnalizadorLexico.getLineaActua
 
 var_pair: ID '{' CTE '}' //T21
 ;  
+
 
 expr_aritmetic: expr_aritmetic '+' termino 
               | expr_aritmetic '-' termino      
@@ -244,6 +248,8 @@ const: CTE { System.out.println("Linea: "+ AnalizadorLexico.getLineaActual() + "
 //Funciones
 public static ArrayList<String> errores = new ArrayList<String>();
 public static  List<String> warnings = new ArrayList<>();
+public static ArrayList<String> erroreslex = new ArrayList<String>();
+public static  List<String> warningslex = new ArrayList<>();
 
 int yylex() throws IOException {
 
@@ -279,15 +285,40 @@ int yylex() throws IOException {
 
 public static void agregarError(int tipo, String clase, String error)
       {
-        if ( tipo == ConstantesCompilador.ERROR)
+        if ( tipo == ConstantesCompilador.ERROR && clase == ConstantesCompilador.SINTACTICO)
           errores.add("Linea: "+ AnalizadorLexico.getLineaActual()+ " (ERROR) " + clase + ": "+ error);
         else
           warnings.add("Linea: "+AnalizadorLexico.getLineaActual()+ " (WARNING) "+ clase + ": "+ error);
 
       }
+     
+public static void agregarErrorLex(int tipo, String clase, String error)
+      {
+        if ( tipo == ConstantesCompilador.ERROR && clase == ConstantesCompilador.LEXICO)
+          erroreslex.add("Linea: "+ AnalizadorLexico.getLineaActual()+ " (ERROR) " + clase + ": "+ error);
+        else
+          warningslex.add("Linea: "+AnalizadorLexico.getLineaActual()+ " (WARNING) "+ clase + ": "+ error);
+
+      }
 
 public static void imprimirErrores()
-{
+{   System.out.println("Errores Lexicos: ");
+    if ( erroreslex.size() > 0)
+        {
+            System.out.println("No se ha podido compilar el programa debido a los siguientes errores: ");
+            for (String error : erroreslex)
+                System.err.println(error);
+        } else {
+            System.out.println("Se ha terminado de compilar correctamente.");
+        }
+            if ( warningslex.size() > 0)
+        {
+            for (String Warning : warningslex)
+                System.out.println(Warning);
+        }
+     
+
+    System.out.println("Errores Sintacticos: ");
     if ( errores.size() > 0)
         {
             System.out.println("No se ha podido compilar el programa debido a los siguientes errores: ");
@@ -306,23 +337,54 @@ public static void imprimirErrores()
 
 public static void ConstanteNegativa(String lexema){
 
+    if(lexema.contains("x")){
+      String sinPrefijo = lexema.startsWith("-0x") 
+                            ? lexema.substring(3) 
+                            : lexema.startsWith("0x") 
+                            ? lexema.substring(2) 
+                            : lexema;
+       lexema = sinPrefijo;
+        if (Integer.parseInt(lexema,16) > ConstantesCompilador.MAX_INT_POSITIVO+1) {
+             Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "Constante Hexadecimal negativa entera fuera del rango permitido " );
+             lexema = "0x" + Integer.toHexString(ConstantesCompilador.MAX_INT_POSITIVO+1).toUpperCase();
+             
+             
+             
+           }
+      }else{
      if(! lexema.contains(".")) {
          if (Integer.parseInt(lexema) > ConstantesCompilador.MAX_INT_POSITIVO+1) {
-             Parser.agregarError(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "Constante entera fuera del rango permitido " );
+             Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "Constante negativa entera fuera del rango permitido " );
              lexema = String.valueOf(ConstantesCompilador.MAX_INT_POSITIVO+1);
-
+             
            }
-     }
-     TablaDeSimbolos.agregarSimbolo('-' + lexema, ConstantesCompilador.CONSTANTE);
+     } }
+     
+     TablaDeSimbolos.obtenerSimbolo(lexema).setLexema("-" + lexema);
  }
 
 public static void ConstantePositiva(String lexema){
+    if(lexema.contains("x")){
+      String sinPrefijo = lexema.startsWith("-0x") 
+                            ? lexema.substring(3) 
+                            : lexema.startsWith("0x") 
+                            ? lexema.substring(2) 
+                            : lexema;
+       lexema = sinPrefijo;
+       if (Integer.parseInt(lexema,16) > ConstantesCompilador.MAX_INT_POSITIVO) {
+            Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "Constante Hexadecimal positiva entera fuera del rango permitido " );
+            lexema = "0x" + Integer.toHexString(ConstantesCompilador.MAX_INT_POSITIVO+1).toUpperCase();
+            TablaDeSimbolos.obtenerSimbolo(lexema).setLexema("0x7FFF");
+          }
+      }else{
     if(! lexema.contains(".")) {
         if (Integer.parseInt(lexema) > ConstantesCompilador.MAX_INT_POSITIVO) {
-            Parser.agregarError(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "Constante entera fuera del rango permitido " );
-            lexema = String.valueOf(ConstantesCompilador.MAX_INT_POSITIVO);
+            Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "Constante positiva entera fuera del rango permitido " );
+            lexema = String.valueOf(ConstantesCompilador.MAX_INT_POSITIVO+1);
+            TablaDeSimbolos.obtenerSimbolo(lexema).setLexema(String.valueOf(ConstantesCompilador.MAX_INT_POSITIVO));
           }
-      }
+      }}
+   
 }
 
 

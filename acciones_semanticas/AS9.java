@@ -32,17 +32,15 @@ import java.io.Reader;
             if (valor > MAX_DOUBLE || valor < MIN_DOUBLE || 
                 (valor < MIN_POSITIVE && valor > 0.0) || (valor > -MIN_POSITIVE && valor < 0.0)) {
                 // Agrega un error si el valor esta fuera de rango
-                Parser.agregarError(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, 
+                Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, 
                 		"El numero flotante esta fuera del rango permitido, se ajustara al valor mas cercano permitido.");
-            	String mensajeWarning = "Error: Linea " + AnalizadorLexico.getLineaActual() + ": Supera el rango";
-                System.err.println(mensajeWarning);
-                System.err.println("El número flotante está fuera del rango permitido, se ajustará al valor más cercano permitido.");
+            
                 // Ajusta el valor al máximo o mínimo permitido
                 if (valor > MAX_DOUBLE) {
-                    Parser.agregarError(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "El numero es demasiado grande. Se lo ha reemplazado por el mas cercano posible: " + MAX_DOUBLE);
+                    Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "El numero es demasiado grande. Se lo ha reemplazado por el mas cercano posible: " + MAX_DOUBLE);
                     valor = MAX_DOUBLE;
                 } else if (valor < MIN_DOUBLE) {
-                	Parser.agregarError(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "El numero es demasiado chico. Se lo ha reemplazado por el mas cercano posible: " + MIN_DOUBLE);
+                	Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "El numero es demasiado chico. Se lo ha reemplazado por el mas cercano posible: " + MIN_DOUBLE);
                     valor = MIN_DOUBLE;
                  }
              }
@@ -67,7 +65,7 @@ import java.io.Reader;
              
          } catch (NumberFormatException e) {
              // Si ocurre una excepcion durante el parseo, agrega un error
-        	 Parser.agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "El numero flotante introducido no es valido.");
+        	 Parser.agregarErrorLex(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "El numero flotante introducido no es valido.");
              return ConstantesCompilador.ERROR;
          }
      }

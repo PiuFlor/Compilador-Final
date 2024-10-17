@@ -23,15 +23,14 @@ public class AS11 implements AccionSemantica {
                             : resultado.startsWith("0x") 
                             ? resultado.substring(2) 
                             : resultado;
-
+      
         // Convierte la cadena hexadecimal a un entero
         int valor = Integer.parseInt(sinPrefijo, 16);
 
         // Verifica si el valor está dentro del rango permitido
-        try {
-        if (valor < -0x8000 || valor > 0x7FFF) {
-            Parser.agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "El valor esta fuera del rango permitido para un HEXADECIMAL.");
-            throw new IllegalArgumentException("El valor está fuera del rango permitido para un HEXADECIMAL.");
+        if (valor > ConstantesCompilador.MAX_INT_POSITIVO+1) {
+            Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "El valor esta fuera del rango permitido para un HEXADECIMAL.");
+           resultado = "0x8000";
         }
 
         TablaDeSimbolos.agregarSimbolo(resultado, ConstantesCompilador.CONSTANTE);
@@ -42,9 +41,5 @@ public class AS11 implements AccionSemantica {
         
         return ConstantesCompilador.CONSTANTE;
         
-        } catch (IllegalArgumentException e) {
-            System.err.println("Error Lexico, Linea "+ AnalizadorLexico.getLineaActual() + ": " + e.getMessage());
-            return -1;
-        }
     }
 }

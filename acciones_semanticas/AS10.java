@@ -14,7 +14,7 @@ public class AS10 implements AccionSemantica{
 		    token_actual.append(caracterLeido);
 		    return ConstantesCompilador.EN_LECTURA;
 		    } else {
-		        Parser.agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "Caracter no valido");
+		        Parser.agregarErrorLex(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "Caracter no valido");
 		    	//System.out.println("CARACTER NO VALIDO");
 		   
 		    	token_actual.append("F");

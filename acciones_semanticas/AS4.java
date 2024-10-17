@@ -25,7 +25,7 @@ public class AS4 implements AccionSemantica{
          } catch (IOException ex){
              ex.printStackTrace();
          } 
-         Parser.agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "No se reconoce el caracter introducido.");
+         Parser.agregarErrorLex(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "No se reconoce el caracter introducido.");
          return ConstantesCompilador.ERROR;
      }
 }

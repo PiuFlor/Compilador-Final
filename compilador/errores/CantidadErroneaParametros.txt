@@ -1,0 +1,8 @@
+programa
+BEGIN
+INTEGER FUN f1 ( INTEGER a , INTEGER b ) BEGIN
+    RET (a + b);
+END
+
+f1(5,6); 
+END

@@ -23,4 +23,8 @@ BEGIN
     BEGIN
       a := a + 1 ;
     END ;
+    
+    IF ( a > b ) THEN 
+      a := a + b ; 
+    END_IF;
 END  

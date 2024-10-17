@@ -13,7 +13,7 @@ public class ASE implements AccionSemantica{
   public int run(Reader lector, StringBuilder token_actual) throws IOException{
     	char caracterLeido = (char)lector.read();
         int linea = AnalizadorLexico.getLineaActual();
-		Parser.agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "Error no descripto en declaracion lexica. Verifique el formato de los caracteres ingresados y del salto de linea (LF)");
+		Parser.agregarErrorLex(ConstantesCompilador.ERROR, ConstantesCompilador.LEXICO, "Error no descripto en declaracion lexica. Verifique el formato de los caracteres ingresados y del salto de linea (LF)");
 		
 		if (caracterLeido == ConstantesCompilador.SALTO_LINEA) {
 		    AnalizadorLexico.setLineaActual(linea + 1);

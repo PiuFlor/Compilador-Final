@@ -24,13 +24,12 @@ public class AS14 implements AccionSemantica{
 	           if (lexema.length() > ConstantesCompilador.LONGITUD_MAXIMA_ID) {//Checkeo de longitud maxima de ID
 	        	   lexema = lexema.substring(0, ConstantesCompilador.LONGITUD_MAXIMA_ID-1);
 	        	   lexema = lexema + "@"; 
-                   Parser.agregarError(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "La etiqueta supera la longitud maxima de "+ ConstantesCompilador.LONGITUD_MAXIMA_ID+" caracteres.");
+                   Parser.agregarErrorLex(ConstantesCompilador.WARNING, ConstantesCompilador.LEXICO, "La etiqueta supera la longitud maxima de "+ ConstantesCompilador.LONGITUD_MAXIMA_ID+" caracteres.");
 	            }
 
 			}
 			TablaDeSimbolos.agregarSimbolo(lexema, ConstantesCompilador.ETIQUETA); //Si no se lo crea
-			System.out.println("Linea: " + AnalizadorLexico.getLineaActual() + ", se reconocio la etiqueta: " + lexema + " codigo: " + ConstantesCompilador.ETIQUETA);
-	        
+			
 			FileWriter writer = new FileWriter(FILE_PATH, true); 
 			writer.write("Etiqueta: " + lexema + " - LINEA: " + AnalizadorLexico.getLineaActual() +"\n");
             writer.close(); 

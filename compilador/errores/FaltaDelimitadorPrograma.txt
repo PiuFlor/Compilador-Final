@@ -1,3 +1,4 @@
 programa
-BEGIN 
+
     INTEGER a;   
+END 
