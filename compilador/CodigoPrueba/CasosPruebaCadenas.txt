@@ -1,5 +1,0 @@
-programa
-BEGIN
-   OUTF ( [ cadenas multilinea
- bien escrita ]);
-END  

@@ -1,5 +1,0 @@
-programa
-BEGIN
-	a := 1 +  ;
-	a :=   + c ;
-END 

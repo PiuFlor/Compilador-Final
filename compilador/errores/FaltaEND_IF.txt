@@ -1,6 +1,0 @@
-programa
-BEGIN
-  IF ( x < 1 ) THEN BEGIN
-    a := a + 1;
-    END
-END  	

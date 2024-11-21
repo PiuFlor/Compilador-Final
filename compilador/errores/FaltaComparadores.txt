@@ -1,8 +1,0 @@
-programa
-BEGIN
-    IF ( x 5 ) THEN 
-    BEGIN
-        a := a + 1 ;
-	END 
-    END_IF ;
-END 

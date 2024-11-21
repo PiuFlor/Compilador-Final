@@ -1,4 +1,0 @@
-programa
-
-    INTEGER a;   
-END 

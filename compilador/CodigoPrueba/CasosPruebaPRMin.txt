@@ -1,8 +1,0 @@
-programa
-BEGIN
-   INTEGER a;
-   a := 1 ;
-   IF ( a > 1 ) THEN
-      OUTF([Hello World]);
-   END_IF;
-END 

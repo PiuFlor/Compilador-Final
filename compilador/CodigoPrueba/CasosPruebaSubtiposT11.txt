@@ -1,4 +1,0 @@
-program
-BEGIN
- TYPEDEF ent := INTEGER { -1 ,10 } ; 
-END 

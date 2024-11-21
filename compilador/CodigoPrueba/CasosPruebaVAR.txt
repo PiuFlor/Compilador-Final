@@ -1,6 +1,0 @@
-programa
-BEGIN
-   INTEGER var ;   ## identificadores con menos de 15 caracteres
-   DOUBLE  var12 ; ## identificadores con menos de 15 caracteres
-   INTEGER var_1 ; ## identificadores con menos de 15 caracteres
-END 

@@ -1,6 +1,0 @@
-programa
-BEGIN
-   OUTF (  cadenas multilinea
- bien escrita ] ) ;
-   INTEGER a;
-END 

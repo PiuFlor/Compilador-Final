@@ -1,8 +1,0 @@
-prog
-BEGIN
-  INTEGER FUN f1 (INTEGER y)
-  BEGIN
-    INTEGER x ;
-    RET (x);   
-  END;
-END 

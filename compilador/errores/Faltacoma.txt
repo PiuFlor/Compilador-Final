@@ -1,5 +1,0 @@
-programa
-BEGIN 
-    INTEGER a  b c;
-	a b c:= 10 12 13 ;  
-END 

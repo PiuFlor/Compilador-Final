@@ -1,4 +1,0 @@
-program
-BEGIN
-    a , b := 1 , 2 ;
-END 
