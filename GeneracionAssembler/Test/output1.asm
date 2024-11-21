@@ -16,41 +16,28 @@ $auxIntCompIzq dw ?
 $auxIntCompDer dw ? 
 $auxDoubleCompIzq dq ? 
 $auxDoubleCompDer dq ? 
-$a$global dw ? 
-$b$global dw ? 
-$c$global dw ? 
-$1 dw 1
-$2 dw 2
-$3 dw 3
-a_mayor_igual_2 db "[a mayor igual 2]" , 0 
-$35 dw 35
-$50 dw 50
-a_menor_50 db "[a menor 50]" , 0 
+$d$global dq ? 
+$46_033455 dq 46.033455
+$45_2 dq 45.2
+_D_es_mayor_a_45_2_ db "[ D es mayor a 45.2 ]" , 0 
+_D_es_menos_a_45_2_ db "[ D es menos a 45.2 ]" , 0 
 .code
 main:
-MOV AX , $2
-MOV $a$global, AX
-MOV AX , $2
-MOV $b$global, AX
-MOV AX , $a$global
-MOV $auxIntCompIzq , AX 
-MOV AX , $2
-MOV $auxIntCompDer , AX 
-MOV AX , $auxIntCompIzq 
-CMP AX , $auxIntCompDer 
-JL label1
-invoke MessageBox, NULL, addr a_mayor_igual_2, addr a_mayor_igual_2, MB_OK 
+FLD $46_033455
+FSTP $d$global
+FLD $d$global
+FSTP $auxDoubleCompIzq 
+FLD $45_2
+FSTP $auxDoubleCompDer 
+FLD $auxDoubleCompIzq 
+FCOM $auxDoubleCompDer 
+FNSTSW AX 
+SAHF 
+JBE label1
+invoke MessageBox, NULL, addr _D_es_mayor_a_45_2_, addr _D_es_mayor_a_45_2_, MB_OK 
+JMP label2
 label1: 
-MOV AX , $35
-MOV $a$global, AX
-MOV AX , $a$global
-MOV $auxIntCompIzq , AX 
-MOV AX , $50
-MOV $auxIntCompDer , AX 
-MOV AX , $auxIntCompIzq 
-CMP AX , $auxIntCompDer 
-JAE label2
-invoke MessageBox, NULL, addr a_menor_50, addr a_menor_50, MB_OK 
+invoke MessageBox, NULL, addr _D_es_menos_a_45_2_, addr _D_es_menos_a_45_2_, MB_OK 
 label2: 
 invoke ExitProcess, 0 
 errorDivisionPorCero: 

@@ -1,4 +1,4 @@
-programa
+sprograma
 BEGIN
     TYPEDEF PAIR < INTEGER > pint ;
     pint p1,p2;
