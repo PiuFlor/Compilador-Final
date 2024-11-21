@@ -1,0 +1,16 @@
+program
+BEGIN
+    INTEGER a , b , c;
+    a , b , c  := 1 + 1 , 2 ;
+    a , b := 1 , 2 ;
+    DOUBLE d;
+    d := 10 + 45.033455;
+    IF (d > 45.2)
+    THEN
+      OUTF ([ D es mayor a 45.2 ]);
+    ELSE
+      OUTF ([ D es menos a 45.2 ]);
+    END_IF;
+END 
+
+

@@ -1,0 +1,6 @@
+prog
+begin
+   WHILE (10 < b) BEGIN
+      GOTO afuera;
+   END;
+END 

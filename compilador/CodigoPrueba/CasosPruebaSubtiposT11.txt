@@ -1,0 +1,10 @@
+program
+BEGIN
+ TYPEDEF ent := INTEGER { -1 ,10 } ; 
+ ent n ;
+ n := 0.34 ;
+ INTEGER a;
+ a := 1;
+ a , n := 1 , 3;
+
+END 

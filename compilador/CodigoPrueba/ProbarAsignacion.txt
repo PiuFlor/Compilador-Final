@@ -1,0 +1,9 @@
+asignacion
+BEGIN
+  INTEGER b;
+  INTEGER var;
+  INTEGER a;
+  var := 3 + b; 
+  a , b := 1 , 2;
+  
+END 

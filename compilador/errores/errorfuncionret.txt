@@ -1,0 +1,13 @@
+programa
+BEGIN
+INTEGER FUN f1(INTEGER i) BEGIN
+    ## Esta función no tiene nombre
+	RET();
+END;
+
+
+INTEGER FUN f1(INTEGER i) BEGIN
+    ## Esta función no tiene nombre
+	RET 
+END;
+END

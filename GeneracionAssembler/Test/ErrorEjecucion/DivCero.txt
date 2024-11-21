@@ -1,0 +1,9 @@
+program
+BEGIN
+     INTEGER a ;
+     a := 7;
+     a := a/0;
+     DOUBLE b ;
+     b := 7.0;
+     b := b/0.0;
+end 

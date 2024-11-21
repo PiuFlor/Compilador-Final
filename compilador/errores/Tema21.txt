@@ -1,0 +1,4 @@
+prog
+BEGIN 
+ TYPEDEF PAIR  INTEGER  pint ;
+END 

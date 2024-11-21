@@ -1,0 +1,6 @@
+program
+BEGIN
+     TYPEDEF ent := INTEGER { 10 ,20 } ; 
+     ent n ;
+     n := 30 ;
+end 

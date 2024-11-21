@@ -1,0 +1,7 @@
+programa
+BEGIN
+   INTEGER variableconmascaracteres; ## identificadores con mas de 15 caracteres
+   INTEGER variable12345678; ## identificadores con mas de 15 caracteres
+   INTEGER variable_1234567; ## identificadores con mas de 15 caracteres
+   INTEGER var ; ## identificadores con un caracter no permitido
+END 

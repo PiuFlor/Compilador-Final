@@ -1,0 +1,51 @@
+Identificador: program - LINEA: 1
+Palabra Rervada: BEGIN - LINEA: 2
+Palabra Rervada: INTEGER - LINEA: 3
+Identificador: a - LINEA: 3
+Literal reconocido: , - LINEA: 3
+Identificador: b - LINEA: 3
+Literal reconocido: , - LINEA: 3
+Identificador: c - LINEA: 3
+Literal reconocido: ; - LINEA: 3
+Identificador: a - LINEA: 4
+Literal reconocido: , - LINEA: 4
+Identificador: b - LINEA: 4
+Literal: := - LINEA: 4
+Entero: 1 - LINEA: 4
+Literal reconocido: + - LINEA: 4
+Literal reconocido: , - LINEA: 4
+Literal reconocido: , - LINEA: 4
+Entero: 3 - LINEA: 4
+Literal reconocido: ; - LINEA: 4
+Palabra Rervada: IF - LINEA: 5
+Literal reconocido: ( - LINEA: 5
+Identificador: a - LINEA: 5
+Literal: 272 - LINEA: 5
+Literal reconocido: ) - LINEA: 5
+Palabra Rervada: THEN - LINEA: 5
+Palabra Rervada: OUTF - LINEA: 6
+Literal reconocido: ( - LINEA: 6
+Cadena: [a mayor igual 2] - LINEA: 6
+Literal reconocido: ) - LINEA: 6
+Literal reconocido: ; - LINEA: 6
+Palabra Rervada: END_IF - LINEA: 7
+Literal reconocido: ; - LINEA: 7
+Identificador: a - LINEA: 8
+Literal: := - LINEA: 8
+Entero: 35 - LINEA: 8
+Literal reconocido: ; - LINEA: 8
+Palabra Rervada: IF - LINEA: 9
+Literal reconocido: ( - LINEA: 9
+Identificador: a - LINEA: 9
+Literal: < - LINEA: 9
+Entero: 50 - LINEA: 9
+Literal reconocido: ) - LINEA: 9
+Palabra Rervada: THEN - LINEA: 9
+Palabra Rervada: OUTF - LINEA: 10
+Literal reconocido: ( - LINEA: 10
+Cadena: [a menor 50] - LINEA: 10
+Literal reconocido: ) - LINEA: 10
+Literal reconocido: ; - LINEA: 10
+Palabra Rervada: END_IF - LINEA: 11
+Literal reconocido: ; - LINEA: 11
+Palabra Rervada: END - LINEA: 12

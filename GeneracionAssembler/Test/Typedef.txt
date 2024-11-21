@@ -1,0 +1,17 @@
+program
+BEGIN
+ TYPEDEF ent := INTEGER { -1 ,10 } ; 
+ ent n ;
+ INTEGER a;
+ a , n := 1 , a;
+   IF ( a = n ) THEN 
+    BEGIN 
+      OUTF([DENTRO  IF]); 
+    END
+    ELSE 
+    BEGIN
+       OUTF([DENTRO  ELSE]); 
+    END
+    END_IF;
+ 
+END 

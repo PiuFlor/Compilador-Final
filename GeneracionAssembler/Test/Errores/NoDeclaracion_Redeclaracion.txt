@@ -1,0 +1,8 @@
+program
+BEGIN
+    INTEGER a;
+    DOUBLE a;
+    b := a;
+    a := f1(b);
+
+END 

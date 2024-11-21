@@ -1,0 +1,12 @@
+programa
+BEGIN
+  IF ( x < 1 ) THEN BEGIN
+    END
+  END_IF ;
+  IF ( x < 1 ) THEN BEGIN
+    END
+  ELSE
+    BEGIN 
+    END
+  END_IF ;
+END 

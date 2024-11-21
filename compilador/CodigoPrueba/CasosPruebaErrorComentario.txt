@@ -1,0 +1,5 @@
+programa
+BEGIN
+   # comentario mal
+   
+END 

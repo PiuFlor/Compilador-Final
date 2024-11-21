@@ -1,0 +1,34 @@
+programa
+BEGIN
+  INTEGER a, b;
+  a := 6;
+  b := 5;
+   IF (a < b) THEN
+   BEGIN
+      a := b;
+      OUTF ([ A es menor a B ]);
+    END
+    ELSE
+    BEGIN
+      b := a;
+      OUTF ([ A es mayor a B ]);
+    END
+  END_IF;
+ 
+  IF (a = b) THEN
+      OUTF ([ A es igual a B ]);
+  END_IF;
+  a := 10;
+  
+  WHILE ( a != b ) 
+    BEGIN
+      a := b;
+      IF ( a = b ) 
+       THEN
+        OUTF ([ ENTRO al IF]);
+       END_IF ; 
+      OUTF ([ ENTRO EN EL WHILE]);
+    END ;
+
+END  
+

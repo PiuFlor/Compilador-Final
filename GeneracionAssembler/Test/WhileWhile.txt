@@ -1,0 +1,17 @@
+program
+BEGIN
+    INTEGER a;
+    INTEGER b;
+    a := 5;
+    b := 5;
+    WHILE ( a = b ) 
+      BEGIN
+        a := 7;
+        WHILE (a > b)
+        BEGIN
+          b := 8;
+          OUTF ([a mayor a b]);
+        END;
+        OUTF ([a  menor o igual a b]);
+    END ;
+end 

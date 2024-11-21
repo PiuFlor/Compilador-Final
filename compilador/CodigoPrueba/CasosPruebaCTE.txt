@@ -1,0 +1,31 @@
+programa
+BEGIN
+    ## valor minimo del rango integer 
+    INTEGER a;
+    a := -32767 ;   
+	## valor maximo del rango integer
+	INTEGER b;
+	b := 32767 ;  
+    ## valor minimo del rango pf positivo
+    DOUBLE c;
+    c := 2.2250738585072014d-308 ;
+    ## valor maximo del rango pf positivo
+	c := 1.7976931348623157d+308 ;
+	## valor minimo del rango pf negativo
+    c := -1.7976931348623157d+308 ;
+    ## valor maximo del rango pf negativo	
+    c := -2.2250738585072014d-308 ;
+	DOUBLE d;
+	## parte entera con parte decimal 
+	d := 123.456 ; 
+    ## parte entera sin parte decimal	
+    d := 789.0 ;   
+	## parte decimal sin parte entera
+    d := 0.987 ; 
+    ## con exponente positivo 
+    d := 1.23d+10 ; 
+    ## con exponente negativo    
+    d := 4.56d-5 ; 
+    ## valor minimo del rango hexadecimal
+    c := 3.45 + 3.45 ;
+END 

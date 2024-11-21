@@ -1,0 +1,11 @@
+program
+BEGIN
+    DOUBLE d;
+    d := 46.033455;
+    IF (d > 45.2)
+    THEN
+      OUTF ([ D es mayor a 45.2 ]);
+    ELSE
+      OUTF ([ D es menos a 45.2 ]);
+    END_IF;
+END 

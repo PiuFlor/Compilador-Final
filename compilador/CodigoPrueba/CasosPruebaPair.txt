@@ -1,0 +1,10 @@
+programa
+BEGIN
+    TYPEDEF PAIR < INTEGER > pint ;
+    pint p1,p2;
+    p1{1} := 34 ;
+    DOUBLE a;
+    p1 := p2 ;
+    a := p1{3};
+    a := p1;
+END 

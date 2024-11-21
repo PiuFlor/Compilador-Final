@@ -1,0 +1,15 @@
+prog
+BEGIN
+   INTEGER b;
+   b := 15;
+
+   WHILE ( 10 < b ) 
+   BEGIN
+        b := 10 ;
+        OUTF ([ANTES DEL GOTO]);
+        GOTO afuera@;
+        OUTF ([DESPUES DEL GOTO]);
+   END;
+
+   OUTF ([DESPUES DEL SALTO]);
+END 

@@ -1,0 +1,21 @@
+program
+BEGIN
+ INTEGER FUN f1 (INTEGER y)
+  BEGIN
+    INTEGER x ;
+    x := 1 ;
+    OUTF ([ENTRO A F1]);
+    INTEGER FUN f2 (INTEGER y)
+      BEGIN
+        INTEGER x ;
+          x := 1 ;
+          OUTF ([ENTRO A F2]);
+       RET (x);
+      END;
+    x := f2(x);
+    RET (x);
+  END;
+
+ INTEGER a;
+ a := f1(3);
+end 

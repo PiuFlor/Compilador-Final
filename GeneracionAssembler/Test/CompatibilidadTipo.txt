@@ -1,0 +1,12 @@
+program
+BEGIN
+    INTEGER a ;
+    DOUBLE  b;
+    a := 5;
+    b := a;
+    IF (a = b)
+    THEN
+        OUTF ([a igual b]);
+    END_IF;
+
+END 

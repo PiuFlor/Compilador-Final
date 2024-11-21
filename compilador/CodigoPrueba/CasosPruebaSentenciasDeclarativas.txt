@@ -1,0 +1,25 @@
+prog
+BEGIN
+  INTEGER FUN f1 (INTEGER y)
+  BEGIN
+    INTEGER x ;
+    x := 1 ;
+    DOUBLE FUN f2 (DOUBLE y)
+       BEGIN
+          DOUBLE x ;
+          x := y ;
+          RET(x);
+       END;
+    x := 2;
+    RET (x);   
+  END;
+  INTEGER b;
+  b := 1 ;
+  b := f1(3);
+  DOUBLE FUN f2 (DOUBLE y)
+       BEGIN
+          DOUBLE x ;
+          x := y ;
+          RET(x);
+       END;
+END 

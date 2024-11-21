@@ -1,0 +1,6 @@
+program
+BEGIN
+    INTEGER a ;
+    DOUBLE  b;
+    a := b;
+END 
