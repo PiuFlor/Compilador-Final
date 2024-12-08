@@ -4,9 +4,9 @@ BEGIN
   BEGIN
     INTEGER x ;
     x := 1 ;
-    DOUBLE FUN f2 (DOUBLE y)
+    INTEGER FUN f2 (INTEGER y)
        BEGIN
-          DOUBLE x ;
+          INTEGER x ;
           x := y ;
           RET(x);
        END;
@@ -16,10 +16,5 @@ BEGIN
   INTEGER b;
   b := 1 ;
   b := f1(3);
-  DOUBLE FUN f2 (DOUBLE y)
-       BEGIN
-          DOUBLE x ;
-          x := y ;
-          RET(x);
-       END;
+
 END 

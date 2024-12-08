@@ -2,10 +2,10 @@ programa
 BEGIN
    INTEGER a;
    a := 1 ;
-   IF ( a > 1) THEN
+   IF ( a = 1) THEN
    BEGIN
       OUTF ( [Hello
-	   World] ) ; 
+World] ) ; 
    END
    END_IF;
 END 

@@ -1,0 +1,8 @@
+prog
+BEGIN
+    INTEGER a;
+    a := 1 - 19;
+    IF (a = -18) THEN
+        OUTF([s]);
+    END_IF;
+END 

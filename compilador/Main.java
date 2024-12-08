@@ -37,7 +37,7 @@ public class Main {
         archivos.put(15, "compilador/CodigoPrueba/CasosPruebaErrorComentario.txt");
         archivos.put(16, "compilador/CodigoPrueba/CasosPruebaErrorCTE.txt");
         archivos.put(17, "compilador/CodigoPrueba/CasosPruebaErrorVAR.txt");
-        archivos.put(18, "compilador/errores/CantidadErroneaParametros.txt");
+        archivos.put(18, "compilador/errores/errorCantidadParametros.txt");
         archivos.put(19, "compilador/errores/errorfuncionnombre.txt");
         archivos.put(20, "compilador/errores/errorfuncionret.txt");
         archivos.put(21, "compilador/errores/ErrorParametroOUFT.txt");
@@ -55,30 +55,31 @@ public class Main {
         archivos.put(33, "compilador/errores/Tema11.txt");
         archivos.put(34, "compilador/errores/Tema21.txt");
         archivos.put(35, "compilador/errores/Tema23.txt");
-        archivos.put(36, "compilador/errores/errorGeneral.txt");
-        archivos.put(37, "compilador/CodigoPrueba/aaaa.txt");
-       
+        
         //Casos de prueba etapa 3 y 4
-        archivos.put(38, "GeneracionAssembler/Test/CasosPruebaAsigMult.txt");
-        archivos.put(39, "GeneracionAssembler/Test/CasosPruebaDouble.txt");
-        archivos.put(40, "GeneracionAssembler/Test/CompatibilidadTipo.txt");
-        archivos.put(41, "GeneracionAssembler/Test/FuncionF1F2.txt");
-        archivos.put(42, "GeneracionAssembler/Test/Goto.txt");
-        archivos.put(43, "GeneracionAssembler/Test/IF_While.txt");
-        archivos.put(44, "GeneracionAssembler/Test/Pair.txt");
-        archivos.put(45, "GeneracionAssembler/Test/Typedef.txt");
-        archivos.put(46, "GeneracionAssembler/Test/WhileWhile.txt");
-        archivos.put(47, "GeneracionAssembler/Test/ErrorEjecucion/DivCero.txt");
-        archivos.put(48, "GeneracionAssembler/Test/ErrorEjecucion/OverflowRangoMaySubtipo.txt");
-        archivos.put(49, "GeneracionAssembler/Test/ErrorEjecucion/OverflowSumaPF.txt");
+        archivos.put(36, "GeneracionAssembler/Test/ComparacionConNegativo.txt");
+        archivos.put(37, "GeneracionAssembler/Test/CasosPruebaAsigMult.txt");
+        archivos.put(38, "GeneracionAssembler/Test/CasosPruebaDouble.txt");
+        archivos.put(39, "GeneracionAssembler/Test/CompatibilidadTipo.txt");
+        archivos.put(40, "GeneracionAssembler/Test/FuncionF1F2.txt");
+        archivos.put(41, "GeneracionAssembler/Test/Goto.txt");
+        archivos.put(42, "GeneracionAssembler/Test/IF_While.txt");
+        archivos.put(43, "GeneracionAssembler/Test/Pair.txt");
+        archivos.put(44, "GeneracionAssembler/Test/Typedef.txt");
+        archivos.put(45, "GeneracionAssembler/Test/WhileWhile.txt");
+        archivos.put(46, "GeneracionAssembler/Test/ErrorEjecucion/DivCero.txt");
+        archivos.put(47, "GeneracionAssembler/Test/ErrorEjecucion/OverflowRangoMaySubtipo.txt");
+        archivos.put(48, "GeneracionAssembler/Test/ErrorEjecucion/OverflowSumaPF.txt");
         
         //Errores
-        archivos.put(50, "GeneracionAssembler/Test/Errores/ErroresAmbitos.txt");
-        archivos.put(51, "GeneracionAssembler/Test/Errores/GotoError.txt");
-        archivos.put(52, "GeneracionAssembler/Test/Errores/IncompatibilidadTipo.txt");
-        archivos.put(53, "GeneracionAssembler/Test/Errores/NoDeclaracion_Redeclaracion.txt");
-        archivos.put(54, "GeneracionAssembler/Test/Errores/ErroresAmbitos.txt");
-        archivos.put(54, "GeneracionAssembler/Test/Errores/WarningDeclaracionMultiple.txt");
+        archivos.put(49, "GeneracionAssembler/Test/Errores/ErroresAmbitos.txt");
+        archivos.put(50, "GeneracionAssembler/Test/Errores/GotoError.txt");
+        archivos.put(51, "GeneracionAssembler/Test/Errores/IncompatibilidadTipo.txt");
+        archivos.put(52, "GeneracionAssembler/Test/Errores/NoDeclaracion_Redeclaracion.txt");
+        archivos.put(53, "GeneracionAssembler/Test/Errores/WarningDeclaracionMultiple.txt");
+
+        archivos.put(54, "GeneracionAssembler/Test/OutfCadena.txt");
+
     }
 
     public static void main(String[] args) throws IOException {
@@ -130,10 +131,16 @@ public class Main {
         
             NodoControl raiz = Parser.getRaiz();
             if (Parser.errores.isEmpty() && Parser.erroreslex.isEmpty() && Parser.erroresSemanticos.isEmpty() && raiz != null) {
+                System.out.println("entro al if");
                    GenerarAssBase generacionAssembler = new GenerarAssBase(Parser.getRaiz());
                    generacionAssembler.generar();
             }else {
-            	System.out.println("No se pudo generar el Assembler debido a que hay errores");
+                if (raiz == null && Parser.erroreslex.isEmpty() && Parser.erroresSemanticos.isEmpty() && raiz != null) {
+                    GenerarAssBase generacionAssembler = new GenerarAssBase();
+                    generacionAssembler.generarraiznull();
+                }else {
+                System.out.println("No se pudo generar el Assembler debido a que hay errores");
+                }
             }
             
         } else {
