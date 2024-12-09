@@ -165,9 +165,9 @@ if (indice != -1) {
                           $$ = nodoError;
                            }  
                         }
-                | tipo FUN error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de nombre en la función");}
-                |  FUN ID  {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta tipo");}
-                | tipo  ID {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta palabra reservada FUN");}
+                | tipo FUN error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de nombre en la función"); $$ = nodoError;}
+                |  FUN ID  {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta tipo"); $$ = nodoError;}
+                | tipo  ID {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta palabra reservada FUN"); $$ = nodoError;}
      ;
 
 parametro: tipo ID {//System.out.println("Linea: "+ AnalizadorLexico.getLineaActual() + ", Se reconocio parametro");
@@ -196,7 +196,7 @@ cuerpo_funcion:bloque_sentencias_programa sentencia_retorno { ArbolSintactico Cu
                           NodoComun cuerpo_completo = new NodoComun("Sentencias_fun",cuerpo , Cuerpo_fun2);
                           $$=new ParserVal(cuerpo_completo);
     }     
-    | bloque_sentencias_programa error { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de sentencia RET en la función");}
+    | bloque_sentencias_programa error { agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de sentencia RET en la función"); $$ =new ParserVal(nodoError);}
     |sentencia_retorno {$$ = $1;}
     ;
 
@@ -205,12 +205,12 @@ sentencia_retorno: RET '(' expr_aritmetic ')' ';' {
                                 ArbolSintactico arb = (ArbolSintactico) $3; 
                                $$ = new ParserVal(new NodoComun($1.sval, arb,null));  }                     
                            
-   | RET error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Debe especificar el valor a retornar");}
-   | '(' expr_aritmetic ')'{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta RET");}
-   | RET '(' expr_aritmetic ')' error  {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta el ';' despues del Retorno");}
-   | RET expr_aritmetic error{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis");} 
-   | RET '(' expr_aritmetic error{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para cerrar");} 
-   | RET expr_aritmetic ')' error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para abrir");} 
+   | RET error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Debe especificar el valor a retornar");$$ =new ParserVal(nodoError);}
+   | '(' expr_aritmetic ')'{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta RET");$$ =new ParserVal(nodoError);}
+   | RET '(' expr_aritmetic ')' error  {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta el ';' despues del Retorno");$$ =new ParserVal(nodoError);}
+   | RET expr_aritmetic error{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis");$$ =new ParserVal(nodoError);} 
+   | RET '(' expr_aritmetic error{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para cerrar");$$ =new ParserVal(nodoError);} 
+   | RET expr_aritmetic ')' error {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para abrir");$$ =new ParserVal(nodoError);} 
    | RET '(' error ')' ';' {agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Retorno vacio");}
    ;
 
@@ -1015,7 +1015,7 @@ public static boolean chequearTipos(Simbolo s1){
     if(s1.getId() != -1){
         if(!auxTipoComp.equals("")){
             //es  una asignacion
-            if(s1.getTipo().equals(auxTipoComp)){
+            if(s1.getTipo().equals(auxTipoComp) || s1.getTipoParametro().equals(auxTipoComp)){
                 return true;
             }else{
                 String err = "Linea: " + AnalizadorLexico.getLineaActual() + ". Error Semantico: Variable " + s1.getLexema() + " con tipo incorrecto";
@@ -1024,7 +1024,11 @@ public static boolean chequearTipos(Simbolo s1){
             }
         }else{
             //es una expr_aritmetic suelta, por ejemplo en una COMPARACION
-            auxTipoComp = s1.getTipo();
+            if (s1.getTipo().equals("INTEGER") || s1.getTipo().equals("DOUBLE")){
+                      auxTipoComp = s1.getTipo();
+            }else{
+                     auxTipoComp = s1.getTipoParametro();
+            }
             return true;
         }
     }else{

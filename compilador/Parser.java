@@ -696,7 +696,7 @@ public static boolean chequearTipos(Simbolo s1){
     if(s1.getId() != -1){
         if(!auxTipoComp.equals("")){
             //es  una asignacion
-            if(s1.getTipo().equals(auxTipoComp)){
+            if(s1.getTipo().equals(auxTipoComp) || s1.getTipoParametro().equals(auxTipoComp)){
                 return true;
             }else{
                 String err = "Linea: " + AnalizadorLexico.getLineaActual() + ". Error Semantico: Variable " + s1.getLexema() + " con tipo incorrecto";
@@ -705,7 +705,11 @@ public static boolean chequearTipos(Simbolo s1){
             }
         }else{
             //es una expr_aritmetic suelta, por ejemplo en una COMPARACION
-            auxTipoComp = s1.getTipo();
+            if (s1.getTipo().equals("INTEGER") || s1.getTipo().equals("DOUBLE")){
+                      auxTipoComp = s1.getTipo();
+            }else{
+                     auxTipoComp = s1.getTipoParametro();
+            }
             return true;
         }
     }else{
@@ -958,7 +962,7 @@ void yyerror(String error) {
     // funcion utilizada para imprimir errores que produce yacc
     System.out.println("Yacc reporto un error: " + error);
 }
-//#line 890 "Parser.java"
+//#line 894 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -1282,15 +1286,15 @@ case 28:
 break;
 case 29:
 //#line 168 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de nombre en la función");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de nombre en la función"); yyval = nodoError;}
 break;
 case 30:
 //#line 169 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta tipo");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta tipo"); yyval = nodoError;}
 break;
 case 31:
 //#line 170 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta palabra reservada FUN");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta palabra reservada FUN"); yyval = nodoError;}
 break;
 case 32:
 //#line 173 "gramatica.y"
@@ -1332,7 +1336,7 @@ case 36:
 break;
 case 37:
 //#line 199 "gramatica.y"
-{ agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de sentencia RET en la función");}
+{ agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta de sentencia RET en la función"); yyval =new ParserVal(nodoError);}
 break;
 case 38:
 //#line 200 "gramatica.y"
@@ -1347,27 +1351,27 @@ case 39:
 break;
 case 40:
 //#line 208 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Debe especificar el valor a retornar");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Debe especificar el valor a retornar");yyval =new ParserVal(nodoError);}
 break;
 case 41:
 //#line 209 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta RET");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta RET");yyval =new ParserVal(nodoError);}
 break;
 case 42:
 //#line 210 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta el ';' despues del Retorno");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta el ';' despues del Retorno");yyval =new ParserVal(nodoError);}
 break;
 case 43:
 //#line 211 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis");yyval =new ParserVal(nodoError);}
 break;
 case 44:
 //#line 212 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para cerrar");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para cerrar");yyval =new ParserVal(nodoError);}
 break;
 case 45:
 //#line 213 "gramatica.y"
-{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para abrir");}
+{agregarError(ConstantesCompilador.ERROR, ConstantesCompilador.SINTACTICO, "Falta parentesis para abrir");yyval =new ParserVal(nodoError);}
 break;
 case 46:
 //#line 214 "gramatica.y"
@@ -2309,7 +2313,7 @@ case 133:
             auxTipoAsig = TablaDeSimbolos.obtenerSimboloSinAmbito(val_peek(1).sval).getTipo();
         }}
 break;
-//#line 2236 "Parser.java"
+//#line 2240 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####
