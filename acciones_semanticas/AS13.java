@@ -15,7 +15,7 @@ public class AS13 implements AccionSemantica{
         char caracterLeido = (char)lector.read();
         token_actual.append(caracterLeido);
         token_actual.toString().replaceAll("\n", " ");
-        System.out.println(token_actual);
+        //System.out.println(token_actual);
         int id_simbolo = TablaDeSimbolos.agregarSimbolo(token_actual.toString(),ConstantesCompilador.CADENA);
         //System.out.println("Linea: " + AnalizadorLexico.getLineaActual() + ", se reconocio Cadena: " + token_actual + " codigo: " + ConstantesCompilador.CADENA);
         FileWriter writer = new FileWriter(FILE_PATH, true); 

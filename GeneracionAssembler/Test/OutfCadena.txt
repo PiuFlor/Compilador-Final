@@ -4,10 +4,10 @@ BEGIN
     INTEGER x;
     DOUBLE a;
     x := 42;
-    a := 3.14;
+    a := 1.0;
     OUTF([El valor de x es ]);
     OUTF( x + 5);
     OUTF([El valor de a es ]);
-    OUTF( a + 3.0 );
+    OUTF( a - 0.001 );
 
-END
+END 

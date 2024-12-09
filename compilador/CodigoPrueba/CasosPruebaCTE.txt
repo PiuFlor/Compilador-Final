@@ -27,5 +27,5 @@ BEGIN
     ## con exponente negativo    
     d := 4.56d-5 ; 
     ## valor minimo del rango hexadecimal
-    c := 3.45 + 3.45 ;
+    c := 0x001 ;
 END 

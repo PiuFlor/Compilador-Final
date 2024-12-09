@@ -224,7 +224,7 @@ public class GenerarAssBase {
 		        
 		        codigo += "end main";
 		        	
-		        System.out.println(codigo);	
+		        //System.out.println(codigo);	
     			FileWriter writer;
 				try {
 					writer = new FileWriter(FILE_PATH, true);
@@ -284,7 +284,7 @@ public class GenerarAssBase {
         
         codigo += "end main";
         	
-        System.out.println(codigo);	
+        //System.out.println(codigo);	
 		FileWriter writer;
 		try {
 			writer = new FileWriter(FILE_PATH, true);

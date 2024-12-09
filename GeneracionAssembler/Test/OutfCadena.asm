@@ -17,41 +17,54 @@ $auxIntCompDer dw ?
 $auxDoubleCompIzq dq ? 
 $auxDoubleCompDer dq ? 
 auxCadena db 50 dup(?) 
+msg db 'Resultado: %d' , 0  
+msg2 db 'Resultado: %d.%02d' , 0 
+buffer db 64 dup (?) 
+$partEnt dd ? 
+$partDec dd ? 
+fpu_cw WORD ? 
+factor dq 100.0 
 $x$global dw ? 
 $a$global dq ? 
 $42 dw 42
-$3_14 dq 3.14
+$1_0 dq 1.0
 El_valor_de_x_es_ db "[El valor de x es ]" , 0 
 $5 dw 5
 El_valor_de_a_es_ db "[El valor de a es ]" , 0 
-$3_0 dq 3.0
+$0_001 dq 0.001
 @aux1 dw ? 
 @aux2 dq ? 
 .code
 main:
 MOV AX , $42
 MOV $x$global, AX
-FLD $3_14
+FLD $1_0
 FSTP $a$global
 invoke MessageBox, NULL, addr El_valor_de_x_es_, addr El_valor_de_x_es_, MB_OK 
 MOV AX , $x$global
 ADD AX , $5
 MOV @aux1 , AX 
 MOV AX, @aux1 
-invoke wsprintf, addr auxCadena, "%d", AX 
+invoke wsprintf, addr auxCadena, addr msg , AX 
 invoke MessageBox, NULL, addr auxCadena, addr auxCadena, MB_OK 
 invoke MessageBox, NULL, addr El_valor_de_a_es_, addr El_valor_de_a_es_, MB_OK 
 FLD $a$global
-FADD $3_0
+FSUB $0_001
 FSTP @aux2
 FLD @aux2 
-FLD $constMaximoDouble 
-FCOM 
-FNSTSW AX 
-SAHF 
-JG errorOverflowSumaDouble 
+FSTCW [fpu_cw]  
+mov ax, [fpu_cw]  
+and ax, 0F3FFh   
+or ax, 0C00h  
+mov [fpu_cw], ax 
+fldcw [fpu_cw]  
+frndint   
+fistp [$partEnt]  
 FLD @aux2 
-invoke wsprintf, addr auxCadena ,"%f",@aux2 
+fisub [$partEnt]  
+fmul QWORD PTR [factor]   
+fistp [$partDec]   
+invoke wsprintf, addr auxCadena ,addr msg2 ,[$partEnt], [$partDec] 
 invoke MessageBox, NULL, addr auxCadena, addr auxCadena, MB_OK 
 invoke ExitProcess, 0 
 errorDivisionPorCero: 

@@ -76,6 +76,7 @@ public class Main {
         archivos.put(50, "GeneracionAssembler/Test/Errores/GotoError.txt");
         archivos.put(51, "GeneracionAssembler/Test/Errores/IncompatibilidadTipo.txt");
         archivos.put(52, "GeneracionAssembler/Test/Errores/NoDeclaracion_Redeclaracion.txt");
+        
         archivos.put(53, "GeneracionAssembler/Test/Errores/WarningDeclaracionMultiple.txt");
 
         archivos.put(54, "GeneracionAssembler/Test/OutfCadena.txt");
@@ -131,13 +132,14 @@ public class Main {
         
             NodoControl raiz = Parser.getRaiz();
             if (Parser.errores.isEmpty() && Parser.erroreslex.isEmpty() && Parser.erroresSemanticos.isEmpty() && raiz != null) {
-                System.out.println("entro al if");
                    GenerarAssBase generacionAssembler = new GenerarAssBase(Parser.getRaiz());
                    generacionAssembler.generar();
+                   abrirArchivo(filePath2);
             }else {
-                if (raiz == null && Parser.erroreslex.isEmpty() && Parser.erroresSemanticos.isEmpty() && raiz != null) {
+                if (raiz == null && Parser.errores.isEmpty() && Parser.erroreslex.isEmpty() && Parser.erroresSemanticos.isEmpty()) {
                     GenerarAssBase generacionAssembler = new GenerarAssBase();
                     generacionAssembler.generarraiznull();
+                    abrirArchivo(filePath2);
                 }else {
                 System.out.println("No se pudo generar el Assembler debido a que hay errores");
                 }
@@ -146,17 +148,8 @@ public class Main {
         } else {
             System.out.println("Opción inválida.");
       }
-        
-    // Se abre el archivo donde se genera el assembler automaticamente
-        try {
-            File file = new File(filePath2);
-            if (file.exists()) {
-                Desktop.getDesktop().open(file);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        scanner.close();
+      scanner.close();
+    
     }
 
     public static void limpiarArchivo(String path) {
@@ -174,6 +167,20 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static void abrirArchivo(String filePath2){
+        // Se abre el archivo donde se genera el assembler automaticamente
+        try {
+            File file = new File(filePath2);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
     }
 
     public static void imprimirArbol() {

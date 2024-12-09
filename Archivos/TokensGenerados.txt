@@ -1,30 +1,41 @@
-Identificador: program - LINEA: 1
+Identificador: prog - LINEA: 1
 Palabra Rervada: BEGIN - LINEA: 2
-Palabra Rervada: DOUBLE - LINEA: 3
-Identificador: d - LINEA: 3
-Literal reconocido: ; - LINEA: 3
-Identificador: d - LINEA: 4
-Literal: := - LINEA: 4
-Punto Flotante: 46.033455 - LINEA: 4
+Palabra Rervada: INTEGER - LINEA: 4
+Identificador: x - LINEA: 4
 Literal reconocido: ; - LINEA: 4
-Palabra Rervada: IF - LINEA: 5
-Literal reconocido: ( - LINEA: 5
-Identificador: d - LINEA: 5
-Literal: > - LINEA: 5
-Punto Flotante: 45.2 - LINEA: 5
-Literal reconocido: ) - LINEA: 5
-Palabra Rervada: THEN - LINEA: 6
-Palabra Rervada: OUTF - LINEA: 7
-Literal reconocido: ( - LINEA: 7
-Cadena: [ D es mayor a 45.2 ] - LINEA: 7
-Literal reconocido: ) - LINEA: 7
+Palabra Rervada: DOUBLE - LINEA: 5
+Identificador: a - LINEA: 5
+Literal reconocido: ; - LINEA: 5
+Identificador: x - LINEA: 6
+Literal: := - LINEA: 6
+Entero: 42 - LINEA: 6
+Literal reconocido: ; - LINEA: 6
+Identificador: a - LINEA: 7
+Literal: := - LINEA: 7
+Punto Flotante: 1.0 - LINEA: 7
 Literal reconocido: ; - LINEA: 7
-Palabra Rervada: ELSE - LINEA: 8
+Palabra Rervada: OUTF - LINEA: 8
+Literal reconocido: ( - LINEA: 8
+Cadena: [El valor de x es ] - LINEA: 8
+Literal reconocido: ) - LINEA: 8
+Literal reconocido: ; - LINEA: 8
 Palabra Rervada: OUTF - LINEA: 9
 Literal reconocido: ( - LINEA: 9
-Cadena: [ D es menos a 45.2 ] - LINEA: 9
+Identificador: x - LINEA: 9
+Literal reconocido: + - LINEA: 9
+Entero: 5 - LINEA: 9
 Literal reconocido: ) - LINEA: 9
 Literal reconocido: ; - LINEA: 9
-Palabra Rervada: END_IF - LINEA: 10
+Palabra Rervada: OUTF - LINEA: 10
+Literal reconocido: ( - LINEA: 10
+Cadena: [El valor de a es ] - LINEA: 10
+Literal reconocido: ) - LINEA: 10
 Literal reconocido: ; - LINEA: 10
-Palabra Rervada: END - LINEA: 11
+Palabra Rervada: OUTF - LINEA: 11
+Literal reconocido: ( - LINEA: 11
+Identificador: a - LINEA: 11
+Literal reconocido: - - LINEA: 11
+Punto Flotante: 0.001 - LINEA: 11
+Literal reconocido: ) - LINEA: 11
+Literal reconocido: ; - LINEA: 11
+Palabra Rervada: END - LINEA: 13

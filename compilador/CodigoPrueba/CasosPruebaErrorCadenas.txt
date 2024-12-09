@@ -1,6 +1,6 @@
 programa
 BEGIN
-   OUTF (  cadenas multilinea
+   OUTF  [ cadenas multilinea
  bien escrita ] ) ;
    INTEGER a;
 END 

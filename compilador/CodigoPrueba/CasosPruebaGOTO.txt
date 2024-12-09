@@ -6,5 +6,5 @@ BEGIN
       b := 10 ;
       GOTO afuera@;
    END ;
-   
+   afuera@
 END 
