@@ -93,8 +93,6 @@ public class Main {
         archivos.put(60, "GeneracionAssembler/Test/ErrorCompilacionPair.txt");
         archivos.put(61, "GeneracionAssembler/Test/AclaracionError2.txt");
         archivos.put(62, "GeneracionAssembler/Test/AclaracionError3.txt");
-
-
     }
 
     public static void main(String[] args) throws IOException {
