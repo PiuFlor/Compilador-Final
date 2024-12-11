@@ -1,0 +1,9 @@
+prog
+BEGIN
+    INTEGER a , b , c,d;
+    a , b , c, d  := 1 + 1 , 2 ;
+    a , b := 1 , 2 ;
+    IF(d = 0) THEN
+      OUTF([ok]);
+    END_IF;
+END

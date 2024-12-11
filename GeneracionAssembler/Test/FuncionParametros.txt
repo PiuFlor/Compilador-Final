@@ -1,0 +1,16 @@
+prog
+BEGIN
+ INTEGER FUN f1 (INTEGER y)
+  BEGIN
+    INTEGER x ;
+    x := y ;
+    OUTF ([ENTRO A F1]);
+ RET(x);
+ x := 3;
+
+  END;
+ INTEGER a;
+ a := f1(3);
+ OUTF(a);
+
+END

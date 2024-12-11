@@ -1,16 +1,14 @@
 program
-BEGIN
-    INTEGER a , b , c;
-    a , b , c  := 1 + 1 , 2 ;
-    a , b := 1 , 2 ;
-    DOUBLE d;
-    d := 10 + 45.033455;
-    IF (d > 45.2)
-    THEN
-      OUTF ([ D es mayor a 45.2 ]);
-    ELSE
-      OUTF ([ D es menos a 45.2 ]);
-    END_IF;
-END 
-
-
+  BEGIN
+  INTEGER FUN f1 (INTEGER y)
+  BEGIN
+  INTEGER x ;
+  x := y ;
+  OUTF ([ENTRO A F1]);
+  RET(X);
+  x := 3;
+  END;
+  INTEGER a;
+  a := f1(3);
+  OUTF(a+0);
+end 

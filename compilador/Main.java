@@ -79,7 +79,21 @@ public class Main {
         
         archivos.put(53, "GeneracionAssembler/Test/Errores/WarningDeclaracionMultiple.txt");
 
-        archivos.put(54, "GeneracionAssembler/Test/OutfCadena.txt");
+        
+
+        archivos.put(54, "compilador/CodigoPrueba/aaaa.txt");
+
+
+        //Casos v2
+        archivos.put(55, "GeneracionAssembler/Test/OutfCadena.txt");
+        archivos.put(56, "GeneracionAssembler/Test/Hexa.txt");
+        archivos.put(57, "GeneracionAssembler/Test/CantidadVarIzq.txt");
+        archivos.put(58, "GeneracionAssembler/Test/PairV2.txt");
+        archivos.put(59, "GeneracionAssembler/Test/FuncionParametros.txt");
+        archivos.put(60, "GeneracionAssembler/Test/ErrorCompilacionPair.txt");
+        archivos.put(61, "GeneracionAssembler/Test/AclaracionError2.txt");
+        archivos.put(62, "GeneracionAssembler/Test/AclaracionError3.txt");
+
 
     }
 

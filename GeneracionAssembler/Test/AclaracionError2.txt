@@ -1,0 +1,15 @@
+programa
+ BEGIN
+   INTEGER a , b , c;
+ DOUBLE d;
+    a , b  := 1 + 1 , 2, 3 ;
+ d := 245.3;
+    IF ( d >= 3.0) THEN
+        OUTF ([a mayor igual 2]);
+    END_IF;
+    a := 35;
+    IF ( a < 50) THEN
+        OUTF ([a menor 50]);
+    END_IF;
+
+END 

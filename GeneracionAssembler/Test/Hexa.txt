@@ -1,0 +1,10 @@
+prog
+BEGIN
+   INTEGER  a , b ;
+   a := 0x0001 ;
+   b := 0x000E ;
+   a := a + b ;
+   IF ( a = 0x000F ) THEN
+     OUTF ([ a es igual  0x000F ]) ;
+   END_IF ;
+END 

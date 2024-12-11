@@ -1,0 +1,21 @@
+programa
+ BEGIN
+    TYPEDEF PAIR < INTEGER > pint ;
+    pint p1,p2;
+    p1{1} := 34 ;
+ INTEGER aux;
+ aux := p1{1};
+ IF ( aux = 34 ) THEN
+      OUTF([bien1]);
+   END_IF;
+   p1{2} := 2;
+    DOUBLE a;
+    p2 := p1 ;
+aux := p2{1};
+ IF ( aux = 34 ) THEN
+      OUTF([bien2]);
+   END_IF;
+    a := p1{2};
+    a := p1;
+
+END 
