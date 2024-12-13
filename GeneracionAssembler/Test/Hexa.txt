@@ -5,6 +5,9 @@ BEGIN
    b := 0x000E ;
    a := a + b ;
    IF ( a = 0x000F ) THEN
+   BEGIN
      OUTF ([ a es igual  0x000F ]) ;
+	   OUTF (a) ;
+    END
    END_IF ;
 END 

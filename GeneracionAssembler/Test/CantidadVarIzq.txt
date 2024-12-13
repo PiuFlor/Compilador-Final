@@ -6,4 +6,4 @@ BEGIN
     IF(d = 0) THEN
       OUTF([ok]);
     END_IF;
-END
+END 

@@ -24,48 +24,29 @@ $partEnt dd ?
 $partDec dd ? 
 fpu_cw WORD ? 
 factor dq 100.0 
-$x$global dw ? 
-$a$global dq ? 
-$42 dw 42
-$1_0 dq 1.0
-El_valor_de_x_es_ db "[El valor de x es ]" , 0 
-$5 dw 5
-El_valor_de_a_es_ db "[El valor de a es ]" , 0 
-$0_001 dq 0.001
-@aux1 dw ? 
-@aux2 dq ? 
+$d$global dq ? 
+$46_033455 dq 46.033455
+$45_2 dq 45.2
+_D_es_mayor_a_45_2_ db "[ D es mayor a 45.2 ]" , 0 
+_D_es_menos_a_45_2_ db "[ D es menos a 45.2 ]" , 0 
 .code
 main:
-MOV AX , $42
-MOV $x$global, AX
-FLD $1_0
-FSTP $a$global
-invoke MessageBox, NULL, addr El_valor_de_x_es_, addr El_valor_de_x_es_, MB_OK 
-MOV AX , $x$global
-ADD AX , $5
-MOV @aux1 , AX 
-MOV AX, @aux1 
-invoke wsprintf, addr auxCadena, addr msg , AX 
-invoke MessageBox, NULL, addr auxCadena, addr auxCadena, MB_OK 
-invoke MessageBox, NULL, addr El_valor_de_a_es_, addr El_valor_de_a_es_, MB_OK 
-FLD $a$global
-FSUB $0_001
-FSTP @aux2
-FLD @aux2 
-FSTCW [fpu_cw]  
-mov ax, [fpu_cw]  
-and ax, 0F3FFh   
-or ax, 0C00h  
-mov [fpu_cw], ax 
-fldcw [fpu_cw]  
-frndint   
-fistp [$partEnt]  
-FLD @aux2 
-fisub [$partEnt]  
-fmul QWORD PTR [factor]   
-fistp [$partDec]   
-invoke wsprintf, addr auxCadena ,addr msg2 ,[$partEnt], [$partDec] 
-invoke MessageBox, NULL, addr auxCadena, addr auxCadena, MB_OK 
+FLD $46_033455
+FSTP $d$global
+FLD $d$global
+FSTP $auxDoubleCompIzq 
+FLD $45_2
+FSTP $auxDoubleCompDer 
+FLD $auxDoubleCompIzq 
+FCOM $auxDoubleCompDer 
+FNSTSW AX 
+SAHF 
+JBE label1
+invoke MessageBox, NULL, addr _D_es_mayor_a_45_2_, addr _D_es_mayor_a_45_2_, MB_OK 
+JMP label2
+label1: 
+invoke MessageBox, NULL, addr _D_es_menos_a_45_2_, addr _D_es_menos_a_45_2_, MB_OK 
+label2: 
 invoke ExitProcess, 0 
 errorDivisionPorCero: 
 invoke MessageBox, NULL, addr $errorDivisionPorCero , addr $errorDivisionPorCero , MB_OK 
